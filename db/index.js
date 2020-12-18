@@ -3,3 +3,5 @@ module.exports = require('mongoose').connect('mongodb://localhost/workout', {
   useUnifiedTopology: true,
   useFindAndModify: false
 })
+
+// const seed = require('../seeders/seed')
