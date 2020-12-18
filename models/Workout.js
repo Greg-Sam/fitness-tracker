@@ -1,6 +1,12 @@
 const { model, Schema } = require('mongoose')
 
 const Workout = new Schema({
+  day: {
+    type: Date,
+    default: () => new Date()
+  },
+  exercises: [
+  {
   type: {
     type: String,
     required: true
@@ -28,11 +34,8 @@ const Workout = new Schema({
   distance: {
     type: Schema.Types.Number,
     required: false
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
   }
-}, { timestamps: true })
+  }] 
+})
 
 module.exports = model('Workout', Workout)

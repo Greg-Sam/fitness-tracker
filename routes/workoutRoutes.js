@@ -1,27 +1,56 @@
 const router = require('express').Router()
-const { Workout, User } = require('../models')
+const { Workout } = require('../models')
 
 
 router.get('/workouts', (req, res) => {
-  Workout.find()
-    .populate('user')
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: {
+          $sum: '$exercises.duration'
+        }
+      }
+    }
+  ])
+    .then(exercises => res.json(exercises))
+    .catch(err => console.log(err))
+})
+
+router.get('/workouts/:id', (req, res) => {
+  Workout.findById(req.params.id)
+    .then(workout => res.json(workout))
+    .catch(err => console.log(err))
+})
+
+router.get('/workouts/range', (req, res) => {
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: {
+          $sum: '$workouts.duration'
+        }
+      }
+    }
+  ])
+    .sort({ _id: -1 })
+    .limit(7)
     .then(workouts => res.json(workouts))
     .catch(err => console.log(err))
 })
 
 router.post('/workouts', (req, res) => {
-  Workout.create(req.body)
-    .then(workout => {
-      User.findByIdAndUpdate(req.body.user, { $push: { workouts: workout._id } })
-        .then(() => res.json(workout))
-        .catch(err => console.log(err))
-    })
+  Workout.create({})
+    .then(workout => res.json(workout))
     .catch(err => console.log(err))
 })
 
-router.put('/workouts/:id', (req, res) => {
-  Workout.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => res.sendStatus(200))
+router.put('/wokouts/:id', (req, res) => {
+  Workout.findByIdAndUpdate(
+    req.params.id,
+    { $push: { exercises: req.body } },
+    { new: true, runValidators: true }
+  )
+    .then(workout => res.json(workout))
     .catch(err => console.log(err))
 })
 
