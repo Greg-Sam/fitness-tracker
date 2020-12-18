@@ -11,7 +11,7 @@ const User = new Schema({
     required: true,
     unique: true
   },
-  items: [{
+  workouts: [{
     type: Schema.Types.ObjectId,
     ref: 'Workout'
   }]
