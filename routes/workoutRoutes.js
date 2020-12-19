@@ -16,25 +16,28 @@ router.get('/workouts', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.get('/workouts/:id', (req, res) => {
-  Workout.findById(req.params.id)
-    .then(workout => res.json(workout))
+
+
+router.get('/workouts/range', (req, res) => {
+  // Workout.aggregate([
+  //   {
+  //     $addFields: {
+  //       totalDuration: {
+  //         $sum: '$exercises.duration'
+  //       }
+  //     }
+  //   }
+  // ])
+  Workout.find({ })
+    .sort({ _id: -1 })
+    .limit(7)
+    .then(exercises => res.json(exercises))
     .catch(err => console.log(err))
 })
 
-router.get('/workouts/range', (req, res) => {
-  Workout.aggregate([
-    {
-      $addFields: {
-        totalDuration: {
-          $sum: '$workouts.duration'
-        }
-      }
-    }
-  ])
-    .sort({ _id: -1 })
-    .limit(7)
-    .then(workouts => res.json(workouts))
+router.get('/workouts/:id', (req, res) => {
+  Workout.findById(req.params.id)
+    .then(workout => res.json(workout))
     .catch(err => console.log(err))
 })
 
@@ -44,7 +47,7 @@ router.post('/workouts', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.put('/wokouts/:id', (req, res) => {
+router.put('/workouts/:id', (req, res) => {
   Workout.findByIdAndUpdate(
     req.params.id,
     { $push: { exercises: req.body } },
