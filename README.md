@@ -13,7 +13,13 @@
   ## Instalation instructions
   This is a web app, so no instalation in necessary.  Just go to https://intense-anchorage-28961.herokuapp.com/ to get started today.  
   ## Usage description
-  From the openning screen, you can either create a new workout, if it is the first exercise of the day, or you can continue a workout in order to add new exercises.  From there you select a resistance or cardio workout and fill in all of the fields to describe the exercise you completed.  To review your workouts for the week, click on the dashboard link and you will see a series of charts and graphs that display your workout history over the past seven days.  
+  From the openning screen, you can either create a new workout, if it is the first exercise of the day, or you can continue a workout in order to add new exercises.  
+  ![fitness 1](https://user-images.githubusercontent.com/71279945/102806596-068a6d00-4372-11eb-9008-1e07bfaaa719.PNG)  
+  From there you select a resistance or cardio workout and fill in all of the fields to describe the exercise you completed.  
+  ![fitness 2](https://user-images.githubusercontent.com/71279945/102806600-07230380-4372-11eb-82d3-f8648ba7ddd8.PNG)  
+  To review your workouts for the week, click on the dashboard link and you will see a series of charts and graphs that display your workout history over the past seven days.  
+  ![fitness 3](https://user-images.githubusercontent.com/71279945/102806601-07230380-4372-11eb-9b48-10c26188cd9c.PNG)  
+
   ## License information
   MIT   
   ## Contributors
