@@ -132,7 +132,7 @@ let workoutSeed = [
   }
 ];
 
-require('mongoose').connect('mongodb://localhost/workout', {
+require('mongoose').connect('mongodb+srv://greg:atlasDB@cluster0.k7jeb.mongodb.net/workout?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
